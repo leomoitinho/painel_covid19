@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Modal from 'react-bootstrap/Modal'; 
 
 //function App() {
 export default class Estado extends React.Component {
@@ -10,6 +11,13 @@ export default class Estado extends React.Component {
       uf: [],
     };
   }
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
 
   async componentDidMount() {
     let estado = "RJ";
@@ -35,6 +43,44 @@ export default class Estado extends React.Component {
         localStorage.setItem('myEstado', JSON.stringify(ufs));
         this.setState({ ufs: ufs });
       })
+    this.hideModal();
+  }
+
+  Filtros = () => {
+    return(
+      <div>
+        <select className="form-control" onChange={this.onChangeEstado}>
+          <option>--</option>
+          <option>AC</option>
+          <option>AL</option>
+          <option>AM</option>
+          <option>AP</option>
+          <option>BA</option>
+          <option>CE</option>
+          <option>DF</option>
+          <option>ES</option>
+          <option>GO</option>
+          <option>MA</option>
+          <option>MT</option>
+          <option>MS</option>
+          <option>MG</option>
+          <option>PA</option>
+          <option>PB</option>
+          <option>PE</option>
+          <option>PI</option>
+          <option>PR</option>
+          <option>RJ</option>
+          <option>RN</option>
+          <option>RS</option>
+          <option>RO</option>
+          <option>RR</option>
+          <option>SC</option>
+          <option>SP</option>
+          <option>SE</option>
+          <option>TO</option>
+        </select>
+      </div>
+    )
   }
    
   render() {
@@ -51,37 +97,16 @@ export default class Estado extends React.Component {
                     <div className="text-right col">
                         <img className="img-fluid" src={'https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/'+ this.state.ufs.uf + '.png'} alt={this.state.ufs.state} />
                     </div>
-                    <div className="col-3">
-                      <select className="form-control" onChange={this.onChangeEstado}>
-                        <option>--</option>
-                        <option>AC</option>
-                        <option>AL</option>
-                        <option>AM</option>
-                        <option>AP</option>
-                        <option>BA</option>
-                        <option>CE</option>
-                        <option>DF</option>
-                        <option>ES</option>
-                        <option>GO</option>
-                        <option>MA</option>
-                        <option>MT</option>
-                        <option>MS</option>
-                        <option>MG</option>
-                        <option>PA</option>
-                        <option>PB</option>
-                        <option>PE</option>
-                        <option>PI</option>
-                        <option>PR</option>
-                        <option>RJ</option>
-                        <option>RN</option>
-                        <option>RS</option>
-                        <option>RO</option>
-                        <option>RR</option>
-                        <option>SC</option>
-                        <option>SP</option>
-                        <option>SE</option>
-                        <option>TO</option>
-                      </select>
+                    <div className="text-right col-3">
+                      <button className="btn btn-outline-dark" onClick={this.showModal}><span className="material-icons">build</span></button>
+                      <Modal show={this.state.show} onHide={this.hideModal}>
+                          <Modal.Header closeButton>
+                              <Modal.Title>Escolha o Estado</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body>
+                              <div className="center">{this.Filtros()}</div>
+                          </Modal.Body>
+                      </Modal>
                     </div>
                 </div>
                 <h6 className="card-subtitle text-muted">{this.state.ufs.state}</h6>
