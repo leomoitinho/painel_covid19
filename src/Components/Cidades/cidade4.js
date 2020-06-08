@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 //function App() {
-export default class Cidades extends React.Component {
+export default class Cidades4 extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
@@ -18,11 +18,11 @@ export default class Cidades extends React.Component {
     let uf = "PR";
     let cid_teste = "Dois Vizinhos";
     //console.log(uf);
-    let teste2 = JSON.parse(localStorage.getItem("myCidade21"));
+    let teste2 = JSON.parse(localStorage.getItem("myCidade24"));
     if (teste2) {
       cid_teste = teste2.city;
     }
-    let teste = JSON.parse(localStorage.getItem("myCidade11"));
+    let teste = JSON.parse(localStorage.getItem("myCidade14"));
     if (teste) {
       uf = teste.state;
     }
@@ -32,8 +32,8 @@ export default class Cidades extends React.Component {
         const cidades = res.data.results;
         this.setState({ cidades });
       })
-      if (localStorage.getItem("myCidade11") === null) {
-        localStorage.setItem('myCidade11', JSON.stringify(this.state.cidades));
+      if (localStorage.getItem("myCidade14") === null) {
+        localStorage.setItem('myCidade14', JSON.stringify(this.state.cidades));
       }
       
       let cidade1 = this.state.cidades.filter(cid => cid.city === cid_teste);
@@ -45,7 +45,7 @@ export default class Cidades extends React.Component {
 
   onChangeCidade = e => {
     let estado = e.target.value;
-    localStorage.setItem('myCidade11', JSON.stringify({"state":estado}));
+    localStorage.setItem('myCidade14', JSON.stringify({"state":estado}));
     axios.get('https://brasil.io/api/dataset/covid19/caso/data/?is_last=True&state='+ estado +'')
         .then(res => {
         this.setState({ cidades2: res.data.results });
@@ -54,20 +54,20 @@ export default class Cidades extends React.Component {
 
   onChangeCidade1 = e => {
     
-    if (localStorage.getItem("myCidade21") === null) {
-      localStorage.setItem('myCidade21', JSON.stringify({"city":e.target.value}));
+    if (localStorage.getItem("myCidade24") === null) {
+      localStorage.setItem('myCidade24', JSON.stringify({"city":e.target.value}));
     }
     this.setState({value: e.target.value});
     this.state.cidades2.filter(cid => cid.city === this.state.value);
     
-    localStorage.setItem('myCidade21', JSON.stringify({"city":e.target.value}));
+    localStorage.setItem('myCidade24', JSON.stringify({"city":e.target.value}));
         
   }
 
   render() {
       
-      let cid1 = JSON.parse(localStorage.getItem("myCidade21"));
-      let state1 = JSON.parse(localStorage.getItem("myCidade11"));
+      let cid1 = JSON.parse(localStorage.getItem("myCidade24"));
+      let state1 = JSON.parse(localStorage.getItem("myCidade14"));
       let C1 = this.state.cidades2.filter(cid => cid.city === cid1.city);
       
       console.log(this.state.cidades3);
@@ -78,7 +78,7 @@ export default class Cidades extends React.Component {
           <div className="card-body">
             <div className="row">
               <div className="col">
-                <h2 className="card-title">{cid1.city}<br /><h6>{state1.state}</h6></h2>
+                <h2 className="card-title">{cid1.city} <br /> <h6>{state1.state}</h6></h2>
               </div>
               <div className="col-3">
                 <select className="form-control" onChange={this.onChangeCidade}>

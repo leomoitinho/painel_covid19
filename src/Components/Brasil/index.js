@@ -23,11 +23,12 @@ export default class Pais extends React.Component {
       const b = this.state.country;
     return (
       <div>
-        <div className="card" style={{ height: '12rem', marginTop: '20px' }}>
+        <div className="card" style={{ height: '13rem', marginTop: '20px' }}>
             <div className="card-body">
                 <h1 className="card-title">{b.country}</h1>
                 <h6 className="card-subtitle mb-2 text-muted">Total de casos do país</h6>
-                    <table className="table table-sm table-responsive">
+                  <div className="table-responsive">
+                    <table className="table table-sm">
                         <thead>
                             <tr>
                                 <td>Casos</td>
@@ -45,6 +46,7 @@ export default class Pais extends React.Component {
                             </tr>
                         </tbody>
                     </table>
+                  </div>
             </div>
         </div>
         
