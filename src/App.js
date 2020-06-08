@@ -8,6 +8,7 @@ import Cidades from './Components/Cidades/index';
 import Cidades2 from './Components/Cidades/cidade2';
 import Cidades3 from './Components/Cidades/cidade3';
 import Cidades4 from './Components/Cidades/cidade4';
+import Cidades5 from './Components/Cidades/cidade5';
 import Footer from './Components/Footer';
 
 //function App() {
@@ -44,6 +45,12 @@ export default class App extends React.Component {
     }
     if (localStorage.getItem("myCidade24") === null) {
       localStorage.setItem('myCidade24', JSON.stringify({"city":"Niteroi"}));
+    }
+    if (localStorage.getItem("myCidade15") === null) {
+      localStorage.setItem('myCidade15', JSON.stringify({"state":"RJ"}));
+    }
+    if (localStorage.getItem("myCidade25") === null) {
+      localStorage.setItem('myCidade25', JSON.stringify({"city":"Niteroi"}));
     }
   }
 
@@ -105,6 +112,7 @@ export default class App extends React.Component {
             <Cidades2 />
             <Cidades3 />
             <Cidades4 />
+            <Cidades5 />
           </div>
           <div className="col">
             <Estados />
